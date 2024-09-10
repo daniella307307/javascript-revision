@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script>
+        function validateForm(event) {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Fetch values
+            var username = document.myForm.username.value.trim(); 
+            var email = document.myForm.email.value.trim(); 
+            var password = document.myForm.password.value;
+            var confirmPassword = document.myForm.confirmPassword.value;
+
+            // Email validation
+            let atPosition = email.indexOf("@");
+            let dotPosition = email.lastIndexOf(".");
+
+            // Check if username is empty, email is valid, and passwords match
+            if (username.length < 1 || atPosition < 1 || dotPosition < atPosition + 2 || password !== confirmPassword) {
+                alert("Username, password, or email is not valid");
+            } else {
+                document.write("You are a valid user");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Form Validation using JavaScript</h1>
+    <p>Welcome to JavaScript</p>
+    <form name="myForm" method="post" onsubmit="validateForm(event)">
+        Name: <input type="text" name="username" placeholder="Enter your username"/> <br><br>
+        Email: <input type="email" name="email" placeholder="Enter your email"/> <br><br>
+        Password: <input type="password" name="password" placeholder="Enter your password"/> <br><br>
+        Confirm Password: <input type="password" name="confirmPassword" placeholder="Confirm your password"/> <br><br>
+        <button type="submit" value="submit">Register</button>
+    </form>
+</body>
+</html>
